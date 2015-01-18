@@ -1,2 +1,2 @@
-# pygame
-Reserouces for learning Pygame, a library for making games with Python.
+# Pygame
+Resources for learning Pygame, a library for making games with Python.
