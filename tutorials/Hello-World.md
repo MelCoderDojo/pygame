@@ -133,7 +133,7 @@ while True:
          sys.exit()
 
    timer += deltaTime
-   if timer == timerLimit:
+   if timer >= timerLimit:
       randnum = random.randint(0, 2)
       if randnum == 0:
 	     color = RED
