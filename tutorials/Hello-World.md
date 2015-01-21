@@ -101,3 +101,58 @@ while True:
    pygame.display.update()
    fpsClock.tick(FPS)
 ```
+
+With delta time instead of FPS.
+```Python
+import pygame, sys, random
+from pygame.locals import *
+
+pygame.init()
+SCREEN = pygame.display.set_mode((800,600))
+pygame.display.set_caption("Hello world!")
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+
+color = WHITE
+
+fontObj = pygame.font.Font(None, 40)
+
+timer = 0
+timerLimit = 3
+
+ticks = deltaTime = getTicksLastFrame = 0
+
+while True:
+   for event in pygame.event.get():
+      if event.type == QUIT:
+         pygame.quit()
+         sys.exit()
+
+   timer += deltaTime
+   if timer == timerLimit:
+      randnum = random.randint(0, 2)
+      if randnum == 0:
+	     color = RED
+      elif randnum == 1:
+	     color = GREEN
+      else:
+         color = BLUE
+         
+      timer = 0
+   
+   SCREEN.fill(BLACK)
+
+   textSurfaceObj = fontObj.render('Hello world!', True, color)
+   SCREEN.blit(textSurfaceObj, (0,0))
+      
+   pygame.display.update()
+   
+   # Get deltaTime in seconds
+   ticks = pygame.time.get_ticks() / 1000.0
+   deltaTime = (ticks - getTicksLastFrame)
+   getTicksLastFrame = ticks
+```
